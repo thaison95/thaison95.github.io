@@ -35,7 +35,7 @@ define(function (require) {
             var redirect_uri = "https://thaison95.github.io";
             var response_type = "token";
             var url = "https://accounts.google.com/o/oauth2/auth?scope=" + scope + "&client_id=" + client_id + "&redirect_uri=" + redirect_uri +
-                "&response_type=" + response_type;
+                "&response_type=" + response_type + "&output=embed";
             store.set('social','google');
             console.log("gg login");
             window.location.replace(url);
@@ -47,7 +47,7 @@ define(function (require) {
             var redirect_uri = "https://thaison95.github.io";
             var response_type = "token";
             var url = "https://www.facebook.com/dialog/oauth?scope=" + scope + "&client_id=" + client_id + "&redirect_uri=" + redirect_uri +
-                "&response_type=" + response_type;
+                "&response_type=" + response_type + "&output=embed";
             store.set('social','facebook');
             window.location.replace(url);
         };
