@@ -32,7 +32,7 @@ define(function (require) {
         $scope.loginGG = function () {
             var client_id = "872912626455-bvlpomh5rsnccib0of29qjfj9o4u59ir.apps.googleusercontent.com";
             var scope = "email";
-            var redirect_uri = "http://localhost:3000";
+            var redirect_uri = "https://thaison95.github.io";
             var response_type = "token";
             var url = "https://accounts.google.com/o/oauth2/auth?scope=" + scope + "&client_id=" + client_id + "&redirect_uri=" + redirect_uri +
                 "&response_type=" + response_type;
@@ -44,7 +44,7 @@ define(function (require) {
         $scope.loginFB = function () {
             var client_id = "243001122781125";
             var scope = "email";
-            var redirect_uri = "http://localhost:3000";
+            var redirect_uri = "https://thaison95.github.io";
             var response_type = "token";
             var url = "https://www.facebook.com/dialog/oauth?scope=" + scope + "&client_id=" + client_id + "&redirect_uri=" + redirect_uri +
                 "&response_type=" + response_type;
