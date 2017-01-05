@@ -8,10 +8,7 @@ define(function (require) {
     var social = angular.module('socialLogin', []);
 
     social.controller('socialLogin', function ($http, $scope, store, $rootScope, sharedData) {
-
-        store.remove('cart');
-        store.remove('count');
-        console.log("social");
+        
         callApi('Secured', sharedData.host + '/api/foods/GetAllFoods');
 
 
