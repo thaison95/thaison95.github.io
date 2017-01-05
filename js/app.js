@@ -44,6 +44,11 @@ define(['require', './directives/main', './controllers/main', './services/main']
                     templateUrl: "/pages/login.html",
                     controller: "emailLogin"
                 })
+                .state("register", {
+                    url: '/register',
+                    templateUrl: "/pages/register.html",
+                    controller: "register"
+                })
                 .state("menu", {
                     url: '/menu',
                     templateUrl: "/pages/menu.html",

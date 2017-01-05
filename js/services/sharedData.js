@@ -11,7 +11,9 @@ define(function (require) {
         function(){
             var data = {
                 listFood: '',
-                meals: ["selected","",""]
+                meals: ["selected","",""],
+                host: "http://cloudappharboraspnet.apphb.com",
+                domain: "https://thaison95.github.io"
             };
             return data;
         }]);

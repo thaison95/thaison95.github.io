@@ -8,7 +8,8 @@ define(['require',
     './menu',
     './reservation',
     './contact',
-    './email',
+    './login/email',
+    './login/register',
     './admin',
     './payment',
     './login/getToken'], function (require) {
@@ -20,12 +21,13 @@ define(['require',
     var menu = require('./menu');
     var reservation = require('./reservation');
     var contact = require('./contact');
-    var email = require('./email');
+    var email = require('./login/email');
+    var register = require('./login/register');
     var admin = require('./admin');
     var payment = require('./payment');
     var getToken = require('./login/getToken');
 
-    var controllers = angular.module('controllers',['socialLogin','home','emailLogin','getToken','menu','reservation','contact','admin','payment']);
+    var controllers = angular.module('controllers',['socialLogin','home','emailLogin','getToken','menu','reservation','contact','admin','payment','register']);
 
     return controllers;
 });
