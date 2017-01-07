@@ -12,6 +12,7 @@ define(function (require) {
             var data = {
                 listFood: '',
                 meals: ["selected","",""],
+                forgetPass: false,
                 host: "https://cloudappharboraspnet.apphb.com",
                 domain: "https://thaison95.github.io"
             };
