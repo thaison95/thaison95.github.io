@@ -21,26 +21,36 @@ define(function (require) {
                 $scope.phone !== "" &&
                 $scope.email !== "" &&
                 $scope.message !== "") {
-                $http({
-                    method: 'POST',
-                    url: sharedData.host + '/api/foods/SendMessage',
-                    data: {
-                        Username: $scope.name,
-                        Message: $scope.message,
-                        Phone: $scope.phone,
-                        Email: $scope.email
+                if(!myForm.input.$valid)
+                {
+                    Notification.error({message: 'Email không đúng định dạng!', delay: 1500});
+                }
+                else {
+                    $http({
+                        method: 'POST',
+                        url: sharedData.host + '/api/foods/SendMessage',
+                        data: {
+                            Username: $scope.name,
+                            Message: $scope.message,
+                            Phone: $scope.phone,
+                            Email: $scope.email
 
-                    }
-                }).then(function successCallback(response) {
-                    $scope.name = "";
-                    $scope.phone = "";
-                    $scope.email = "";
-                    $scope.message = "";
-                    Notification.info({message: 'Cảm ơn phản hồi của bạn!', delay: 1500});
-                    console.log(response);
-                }, function errorCallback(response) {
-                    console.log(response);
-                });
+                        }
+                    }).then(function successCallback(response) {
+                        $scope.name = "";
+                        $scope.phone = "";
+                        $scope.email = "";
+                        $scope.message = "";
+                        Notification.info({message: 'Cảm ơn phản hồi của bạn!', delay: 1500});
+                        console.log(response);
+                    }, function errorCallback(response) {
+                        console.log(response);
+                    });
+                }
+            }
+            else
+            {
+                Notification.warning({message: 'Vui lòng nhập đầy đủ dữ liệu!', delay: 1500});
             }
         };
 

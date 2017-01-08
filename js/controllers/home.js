@@ -7,12 +7,23 @@ define(function (require) {
 
     var home = angular.module('home', []);
 
-    home.controller('home', function ($state, $scope, store, sharedData, $timeout, $rootScope, Notification) {
+    home.controller('home', function ($http, $state, $scope, store, sharedData, $timeout, $rootScope, Notification) {
 
         $scope.listFood = sharedData.listFood;
+        $scope.listRef = "";
 
         $rootScope.$on("getFoods", function(){
             $scope.listFood = sharedData.listFood;
+        });
+
+        $http({
+            url: sharedData.host + '/api/foods/RutTrichThongTin',
+            method: 'GET',
+        }).then(function(response) {
+            $scope.listRef = response.data;
+            console.log(response.data);
+        }, function(error) {
+            console.log(error);
         });
 
         var meals = ["","",""];

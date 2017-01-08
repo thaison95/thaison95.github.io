@@ -8,7 +8,7 @@ define(function (require) {
     var social = angular.module('socialLogin', []);
 
     social.controller('socialLogin', function ($http, $scope, store, $rootScope, sharedData) {
-        
+
         callApi('Secured', sharedData.host + '/api/foods/GetAllFoods');
 
 
@@ -86,6 +86,7 @@ define(function (require) {
             store.remove('accessToken');
             store.remove('jwt');
             store.remove('cart');
+            store.remove('count');
             window.location.reload();
         };
 
