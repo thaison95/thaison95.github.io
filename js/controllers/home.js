@@ -14,6 +14,10 @@ define(function (require) {
 
         $rootScope.$on("getFoods", function(){
             $scope.listFood = sharedData.listFood;
+            $scope.listFood.sort(function (a, b) {
+                return a.number - b.number;
+            });
+            console.log($scope.listFood);
         });
 
         $http({
@@ -38,6 +42,7 @@ define(function (require) {
             name: null,
             price: null,
             imgfood: null,
+            id: null,
             count: 1,
         };
         $scope.cart = [];
@@ -52,6 +57,7 @@ define(function (require) {
             $scope.item.name = $scope.listFood[id].name;
             $scope.item.price = $scope.listFood[id].price;
             $scope.item.imgfood = $scope.listFood[id].imgfood;
+            $scope.item.id = $scope.listFood[id].id;
 
             if($scope.cart.length > 0)            {
                 var exist = false;
@@ -70,6 +76,7 @@ define(function (require) {
                         count: $scope.item.count,
                         name: $scope.item.name,
                         price: $scope.item.price,
+                        id: $scope.item.id,
                         imgfood: $scope.item.imgfood
                     });
                 }
@@ -80,6 +87,7 @@ define(function (require) {
                     count: $scope.item.count,
                     name: $scope.item.name,
                     price: $scope.item.price,
+                    id: $scope.item.id,
                     imgfood: $scope.item.imgfood
                 });
             }
@@ -90,6 +98,7 @@ define(function (require) {
             store.set('count', $scope.count);
 
             $rootScope.$emit("updateCart", {});
+
             Notification.info({message: 'Đã thêm vào giỏ hàng!', delay: 1500});
         };
     });
