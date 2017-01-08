@@ -21,7 +21,7 @@ define(function (require) {
                 $scope.phone !== "" &&
                 $scope.email !== "" &&
                 $scope.message !== "") {
-                if(!myForm.input.$valid)
+                if(!$scope.email.includes("@"))
                 {
                     Notification.error({message: 'Email không đúng định dạng!', delay: 1500});
                 }
