@@ -40,7 +40,8 @@ define(function (require) {
                         Username: $scope.userName,
                         Phone: $scope.phone,
                         District: "Hồ Chí Minh",
-                        Ward: $scope.district.trim(),
+                        Ward: $scope.district.trim(),						
+                        Address: $scope.address,
                         Listoders: listOrder
                     }
                 }).then(function successCallback(response) {
