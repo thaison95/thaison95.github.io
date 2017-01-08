@@ -35,7 +35,7 @@ define(function (require) {
 
                         }
                     }).then(function successCallback(response) {
-
+						$state.go("login");
                         console.log(response);
                     }, function errorCallback(response) {
                         console.log(response);
