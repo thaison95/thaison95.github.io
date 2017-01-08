@@ -32,8 +32,7 @@ define(function (require) {
                     method: 'POST',
                     url: sharedData.host + '/api/Customer/Order',
                     headers: {
-                        Authorization: store.get('jwt').token,
-						'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+                        Authorization: store.get('jwt').token
                     },
                     data: {
                         iduser: store.get('jwt').dbUser.id,
