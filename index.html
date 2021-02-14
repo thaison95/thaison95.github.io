@@ -2,42 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Food Order</title>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="images/favicon.ico">
-    <link rel="shortcut icon" href="images/favicon.ico" />
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/jquery-migrate/jquery-migrate.js"></script>
-    <script src="bower_components/jQuery.equalHeights/jquery.equalheights.js"></script>
-    <script src="bower_components/ui-to-top/js/jquery.ui.totop.js"></script>
-    <script src="bower_components/jquery.easing/js/jquery.easing.js"></script>
-    <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_Knmqj2nlkdceL7OzOmQH5nwFoOZ04KM"></script>
-    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
-    <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.js"></script>
-    <script type="text/javascript" src="bower_components/requirejs/require.js" data-main="js/main.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(".block1").mouseover(function() {
-                $(this).addClass("blur");
-            });
-            $(".block1").mouseout(function() {
-                $(this).removeClass("blur");
-            });
-            $().UItoTop({ easingType: 'easeOutQuart' });
-        })
-    </script>
-
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ec Ec</title>
+    <link rel="manifest" href="/manifest.json">
+    <base href="/">
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css">
 </head>
-<body class="page1">
-<my-header></my-header>
-    <ui-view></ui-view>
-<my-footer></my-footer>
+<body>
+    <select id="hour">
+        <option>04</option>
+        <option>05</option>
+        <option>06</option>
+        <option>07</option>
+        <option>08</option>
+    </select>
+    <select id="minute">
+        <option>00</option>
+    </select>
+    <br />
+    <button onclick="calculateTime()">Éc éc</button>
+    <br />
+    <ul id="display"></ul>
 </body>
 </html>

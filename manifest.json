@@ -1,0 +1,15 @@
+{
+  "name": "Éc Éc",
+  "short_name": "Éc Éc",
+  "icons": [
+    {
+      "src": "/images/app-icon-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": "/index.html",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#fff"
+}
