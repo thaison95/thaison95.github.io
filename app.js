@@ -8,11 +8,15 @@ window.addEventListener("load", () => {
   
 });
 
-const level = 3 + 35 / 60;
-
 function calculateTime() {
   const hour = document.querySelector("#hour");
   const minute = document.querySelector("#minute");
+  const levelEl = document.querySelector("#level");
+
+  let level = 3 + 35 / 60;
+  if (levelEl.value == 12) {
+    level = 3.5;
+  }
 
   let timeToFeed = dayjs().hour(hour.value).minute(minute.value);
 
