@@ -18,35 +18,16 @@
     <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body>
-    <select id="hour">
-        <option>04</option>
-        <option>05</option>
-        <option>06</option>
-        <option>07</option>
-        <option>08</option>
-        <option>09</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
-        <option>13</option>
-        <option>14</option>
-        <option>15</option>
-        <option>16</option>
-        <option>17</option>
-        <option>18</option>
-        <option>19</option>
-        <option>20</option>
-    </select>
-    <select id="minute">
-        <option>00</option>
-    </select>
+    <input id="hour" inputmode="numeric" pattern="[0-9]*" type="text" /> :
+    <input id="minute" inputmode="numeric" pattern="[0-9]*" type="text" />
     <select id="level">
-        <option value=11>Cấp 11 (3h35m)</option>
-        <option value=12 selected="selected">Cấp 12 (3h30m)</option>
+        <!-- <option value=11>Cấp 11 (3h35m)</option> -->
+        <option value=12 selected="selected">Cấp 12-13 (3h30m)</option>
     </select>
     <br />
     <button onclick="calculateTime()">Éc éc</button>
     <br />
+    <p id="msg"></p>
     <ul id="display"></ul>
 </body>
 </html>
