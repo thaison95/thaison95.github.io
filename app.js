@@ -1,7 +1,25 @@
 const levelTime = [3.5, 3 + 25 / 60];
+const md = new MobileDetect(window.navigator.userAgent);
+
+var clientID = 'Others_' + dayjs().format('DD_MM_HH_mm');
+
+if (md.is('iPhone')) {
+  clientID = 'ip_' + md.version('iOS') + '_' + dayjs().format('DD_MM');
+}
+
+if (localStorage.getItem('client-id')) {
+  clientID = localStorage.getItem('client-id');
+} else {
+  localStorage.setItem('client-id', clientID);
+}
+
+function writeDB(doc, data) {
+  const dateTime = dayjs().format('DD.MM-HH.mm.ss');
+  db.collection(clientID).doc(dateTime + '-' + doc).set(data);
+}
 
 window.addEventListener("load", () => {
-  // e
+  writeDB('loaded', { userAgent: md.ua });
 });
 
 function validateInput(hour, minute) {
@@ -27,7 +45,9 @@ function calculateTime() {
 
   let level = levelTime[+levelEl.value];
 
-  const msg = validateInput(parseInt(hour.value), parseInt(minute.value));
+  writeDB('click-ec-ec', { inputHour: hour.value, inputMinute: minute.value, levelSelect: levelEl.value });
+
+  const msg = validateInput(+hour.value, +minute.value);
 
   if (msg) {
     showMsg(msg);
@@ -50,12 +70,19 @@ function calculateTime() {
       };
       liEl += `
         <li>
-          <button style="margin-right: 10px" onclick="showMsg('Này đang làm. Chưa xong!')">-</button>${timeToFeed.format('HH:mm')}<button style="margin-left: 10px" onclick="showMsg('Này đang làm. Chưa xong!')">+</button>
+          <button style="margin-right: 10px" onclick="btnClick('minus', '${timeToFeed.format('HH:mm')}')">-</button>
+            ${timeToFeed.format('HH:mm')}
+          <button style="margin-left: 10px" onclick="btnClick('plus', '${timeToFeed.format('HH:mm')}')">+</button>
         </li>
       `;
     }
   }
   displayEl.innerHTML = liEl;
+}
+
+function btnClick(type, time) {
+  writeDB('click-' + type, { value: time });
+  showMsg('Này đang làm. Chưa xong!');
 }
 
 function showMsg(msg) {
