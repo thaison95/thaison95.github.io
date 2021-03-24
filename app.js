@@ -1,3 +1,5 @@
+const levelTime = [3.5, 3 + 25 / 60];
+
 window.addEventListener("load", () => {
   // e
 });
@@ -23,10 +25,7 @@ function calculateTime() {
   const levelEl = document.querySelector("#level");
   const displayEl = document.querySelector('#display');
 
-  let level = 3 + 35 / 60;
-  if (levelEl.value == 12) {
-    level = 3.5;
-  }
+  let level = levelTime[+levelEl.value];
 
   const msg = validateInput(parseInt(hour.value), parseInt(minute.value));
 
