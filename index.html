@@ -43,15 +43,17 @@
     </script>
   </head>
   <body>
-    <input id="hour" inputmode="numeric" pattern="[0-9]*" type="text" /> :
-    <input id="minute" inputmode="numeric" pattern="[0-9]*" type="text" />
-    <select id="level">
-      <!-- <option value=11>Cấp 11 (3h35m)</option> -->
-      <option value="0" selected="selected">Cấp 12-13 (3h30m)</option>
-      <option value="1">Cấp 14 (3h25m)</option>
-    </select>
-    <br />
-    <button onclick="calculateTime()">Éc éc</button>
+    <div id="container">
+      <input id="hour" inputmode="numeric" pattern="[0-9]*" type="text" /> :
+      <input id="minute" inputmode="numeric" pattern="[0-9]*" type="text" />
+      <select id="level">
+        <!-- <option value=11>Cấp 11 (3h35m)</option> -->
+        <option value="0" selected="selected">Cấp 12-13 (3h30m)</option>
+        <option value="1">Cấp 14 (3h25m)</option>
+      </select>
+      <br />
+      <button onclick="calculateTime()">Éc éc</button>
+    </div>
     <br />
     <p id="msg"></p>
     <ul id="display"></ul>

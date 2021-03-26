@@ -20,6 +20,11 @@ function writeDB(doc, data) {
 
 window.addEventListener("load", () => {
   writeDB('loaded', { userAgent: md.ua });
+  const time = dayjs();
+  if ((time.hour() === 23 && time.minute() >= 50) || (time.hour() === 0 && time.minute() <= 30)) {
+    document.getElementById('container').style = "display: none";
+    showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này? Có phải nghĩ tới a nên ko ngủ đc? Sao e lại unblock a rồi?');
+  }
 });
 
 function validateInput(hour, minute) {
