@@ -21,10 +21,10 @@ function writeDB(doc, data) {
 window.addEventListener("load", () => {
   writeDB('loaded', { userAgent: md.ua });
   const time = dayjs();
-  if ((time.hour() === 23 && time.minute() >= 50) || (time.hour() === 0 && time.minute() <= 30)) {
+  if ((time.hour() === 23 && time.minute() >= 55) || (time.hour() === 0 && time.minute() <= 59)) {
     writeDB('seen', { time: time.format('DD.MM-HH.mm.ss') });
     document.getElementById('container').style = "display: none";
-    showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này? Anh biết e thường xuyên mở app vào giờ này và ko phải để tính giờ. Có đúng ko? Tin nhắn này a cài sẵn để nếu e mở app vào thời điểm 23h50 -> 00h30 thì sẽ hiện lên, e đọc được rồi thì hôm sau sẽ ko hiện lại nữa đâu. Em có thể để lại tin nhắn cho a ở phía dưới');
+    showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này? Anh biết e thường xuyên mở app vào giờ này và ko phải để tính giờ. Có đúng ko? Tin nhắn này a cài sẵn để nếu e mở app vào thời điểm 23h55 -> 00h59 thì sẽ hiện lên, e đọc được rồi thì hôm sau sẽ ko hiện lại nữa đâu. Em có thể để lại tin nhắn cho a ở phía dưới');
     document.getElementById('text-area').style = "display: block";
   }
 });
