@@ -22,13 +22,15 @@ window.addEventListener("load", () => {
   writeDB('loaded', { userAgent: md.ua });
   const time = dayjs();
   if ((time.hour() === 23 && time.minute() >= 50) || (time.hour() === 0 && time.minute() <= 30)) {
+    writeDB('seen', { time: time.format('DD.MM-HH.mm.ss') });
     document.getElementById('container').style = "display: none";
-    showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này?');
+    showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này? Anh biết e thường xuyên mở app vào giờ này và ko phải để tính giờ. Có đúng ko? Tin nhắn này a cài sẵn để nếu e mở app vào thời điểm 23h50 -> 00h30 thì sẽ hiện lên, e đọc được rồi thì hôm sau sẽ ko hiện lại nữa đâu. Em có thể để lại tin nhắn cho a ở phía dưới');
+    document.getElementById('text-area').style = "display: block";
   }
 });
 
 function validateInput(hour, minute) {
-  if (hour > 23 || minute > 59) {
+  if (hour > 23 || minute > 59 || !hour || !minute) {
     return 'Em định thử anh đấy à?';
   }
   if (hour >= 20 && hour < 24) {
@@ -51,15 +53,16 @@ function calculateTime() {
   let level = levelTime[+levelEl.value];
 
   writeDB('click-ec-ec', { inputHour: hour.value, inputMinute: minute.value, levelSelect: levelEl.value });
-
-  // const msg = validateInput(+hour.value, +minute.value);
-
-  // if (msg) {
-  //   showMsg(msg);
-  //   displayEl.innerHTML = '';
-  //   return;
-  // }
   showMsg('Sao em unblock a rồi?'); // clear msg
+
+  const msg = validateInput(+hour.value, +minute.value);
+
+  if (msg) {
+    // showMsg(msg);
+    displayEl.innerHTML = '';
+    return;
+  }
+
   let timeToFeed = dayjs().hour(hour.value).minute(minute.value);
 
   const ul = document.createElement("ul");
@@ -93,4 +96,14 @@ function btnClick(type, time) {
 function showMsg(msg) {
   const msgEl = document.getElementById('msg');
   msgEl.textContent = msg;
+}
+
+function sendMsg() {
+  const msg = document.querySelector('#getMsg');
+  if (!msg.value || msg.value === 'em chưa nhập gì mà ಠ_ಠ') {
+    msg.value = 'em chưa nhập gì mà ಠ_ಠ';
+  } else {
+    writeDB('message', { value: msg.value });
+    msg.value = '';
+  }
 }
