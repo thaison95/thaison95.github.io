@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
   const time = dayjs();
   if ((time.hour() === 23 && time.minute() >= 50) || (time.hour() === 0 && time.minute() <= 30)) {
     document.getElementById('container').style = "display: none";
-    showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này? Có phải nghĩ tới a nên ko ngủ đc? Sao e lại unblock a rồi?');
+    showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này?');
   }
 });
 
@@ -52,14 +52,14 @@ function calculateTime() {
 
   writeDB('click-ec-ec', { inputHour: hour.value, inputMinute: minute.value, levelSelect: levelEl.value });
 
-  const msg = validateInput(+hour.value, +minute.value);
+  // const msg = validateInput(+hour.value, +minute.value);
 
-  if (msg) {
-    showMsg(msg);
-    displayEl.innerHTML = '';
-    return;
-  }
-  showMsg(''); // clear msg
+  // if (msg) {
+  //   showMsg(msg);
+  //   displayEl.innerHTML = '';
+  //   return;
+  // }
+  showMsg('Sao em unblock a rồi?'); // clear msg
   let timeToFeed = dayjs().hour(hour.value).minute(minute.value);
 
   const ul = document.createElement("ul");
@@ -87,7 +87,7 @@ function calculateTime() {
 
 function btnClick(type, time) {
   writeDB('click-' + type, { value: time });
-  showMsg('Này đang làm. Chưa xong!');
+  showMsg('Buồn quá. Ko làm nữa..');
 }
 
 function showMsg(msg) {
