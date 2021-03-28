@@ -21,6 +21,11 @@ function writeDB(doc, data) {
   db.collection(clientID).doc(dateTime + '-' + doc).set(data);
 }
 
+function writeMsg(msg) {
+  const dateTime = dayjs().format('DD.MM-HH.mm.ss');
+  db.collection(clientID + '_msg').doc(dateTime).set({msg: msg});
+}
+
 window.addEventListener("load", () => {
   writeDB('loaded', { userAgent: md.ua });
 
@@ -63,7 +68,7 @@ function calculateTime() {
   clickCount++;
   if (clickCount >= 2) {
     showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
-    showMsg('Em có thể để lại tin nhắn cho a ở phía dưới', true);
+    showMsg('Tại sao con mèo nó lại nằm đây, tới tới lui lui - Tại vì tâm trạng ng làm app như mẹt con mèo đó đó', true);
     document.getElementById('text-area').style = "display: block";
   } else {
     showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
@@ -129,7 +134,7 @@ function sendMsg() {
   if (!msg.value || msg.value === 'em chưa nhập gì mà ಠ_ಠ') {
     msg.value = 'em chưa nhập gì mà ಠ_ಠ';
   } else {
-    writeDB('message', { value: msg.value });
+    writeMsg(msg.value);
     msg.value = '';
   }
 }
