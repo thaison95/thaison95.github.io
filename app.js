@@ -106,6 +106,7 @@ function btnClick(type, time) {
   writeDB('click-' + type, { value: time });
   // showMsg('Buồn quá. Ko làm nữa..');
   document.getElementById('meo').style.display = 'block';
+  document.getElementById('display').style.marginTop = '80px';
   if (type === 'plus' && imgPosition + 140 <= window.innerWidth) {
     imgPosition += 15;
   }
