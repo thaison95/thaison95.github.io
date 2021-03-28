@@ -24,7 +24,6 @@ function writeDB(doc, data) {
 window.addEventListener("load", () => {
   writeDB('loaded', { userAgent: md.ua });
 
-  showMsg(window.innerWidth);
   imgPosition = window.innerWidth / 2 - 60;
   document.getElementById('meo').style.left = `${imgPosition}px`;
 
