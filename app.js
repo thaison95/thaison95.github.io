@@ -57,7 +57,8 @@ function calculateTime() {
   writeDB('click-ec-ec', { inputHour: hour.value, inputMinute: minute.value, levelSelect: levelEl.value });
   clickCount++;
   if (clickCount >= 2) {
-    showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko? \n Em có thể để lại tin nhắn cho a ở phía dưới');
+    showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
+    showMsg('Em có thể để lại tin nhắn cho a ở phía dưới', true);
     document.getElementById('text-area').style = "display: block";
   } else {
     showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
@@ -101,8 +102,11 @@ function btnClick(type, time) {
   showMsg('Buồn quá. Ko làm nữa..');
 }
 
-function showMsg(msg) {
-  const msgEl = document.getElementById('msg');
+function showMsg(msg, is2nd) {
+  let msgEl = document.getElementById('msg');
+  if (is2nd) {
+    msgEl = document.getElementById('msg2');
+  }
   msgEl.textContent = msg;
 }
 

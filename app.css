@@ -14,7 +14,10 @@ p {
 
 pre {
     font-style: italic;
-    white-space: pre-wrap;
+    white-space: pre;
+    word-wrap: normal;
+    resize: none;
+    box-sizing: border-box;
 }
 
 button {
