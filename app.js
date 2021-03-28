@@ -1,6 +1,8 @@
 const levelTime = [3.5, 3 + 25 / 60];
 const md = new MobileDetect(window.navigator.userAgent);
 
+let clickCount = 0;
+
 var clientID = 'Others_' + dayjs().format('DD_MM_HH_mm');
 
 if (md.is('iPhone')) {
@@ -21,12 +23,12 @@ function writeDB(doc, data) {
 window.addEventListener("load", () => {
   writeDB('loaded', { userAgent: md.ua });
   const time = dayjs();
-  if ((time.hour() === 23 && time.minute() >= 55) || (time.hour() === 0 && time.minute() <= 59)) {
-    writeDB('seen', { time: time.format('DD.MM-HH.mm.ss') });
-    document.getElementById('container').style = "display: none";
-    showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này? Anh biết e thường xuyên mở app vào giờ này và ko phải để tính giờ. Có đúng ko? Tin nhắn này a cài sẵn để nếu e mở app vào thời điểm 23h55 -> 00h59 thì sẽ hiện lên, e đọc được rồi thì hôm sau sẽ ko hiện lại nữa đâu. Em có thể để lại tin nhắn cho a ở phía dưới');
-    document.getElementById('text-area').style = "display: block";
-  }
+  // if ((time.hour() === 23 && time.minute() >= 55) || (time.hour() === 0 && time.minute() <= 59)) {
+  //   writeDB('seen', { time: time.format('DD.MM-HH.mm.ss') });
+  //   document.getElementById('container').style = "display: none";
+  //   showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này? Anh biết e thường xuyên mở app vào giờ này và ko phải để tính giờ. Có đúng ko? Tin nhắn này a cài sẵn để nếu e mở app vào thời điểm 23h55 -> 00h59 thì sẽ hiện lên, e đọc được rồi thì hôm sau sẽ ko hiện lại nữa đâu. Em có thể để lại tin nhắn cho a ở phía dưới');
+  //   document.getElementById('text-area').style = "display: block";
+  // }
 });
 
 function validateInput(hour, minute) {
@@ -53,7 +55,13 @@ function calculateTime() {
   let level = levelTime[+levelEl.value];
 
   writeDB('click-ec-ec', { inputHour: hour.value, inputMinute: minute.value, levelSelect: levelEl.value });
-  showMsg('Sao em unblock a rồi?'); // clear msg
+  clickCount++;
+  if (clickCount >= 2) {
+    showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko? \n Em có thể để lại tin nhắn cho a ở phía dưới');
+    document.getElementById('text-area').style = "display: block";
+  } else {
+    showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
+  }
 
   const msg = validateInput(+hour.value, +minute.value);
 

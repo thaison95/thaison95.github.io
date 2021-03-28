@@ -12,6 +12,10 @@ p {
     font-style: italic;
 }
 
+pre {
+    font-style: italic;
+}
+
 button {
     margin-top: 10px;
 }
