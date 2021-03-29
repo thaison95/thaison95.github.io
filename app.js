@@ -49,7 +49,7 @@ window.addEventListener("load", () => {
 });
 
 function validateInput(hour, minute) {
-  if (hour > 23 || minute > 59 || !hour || !minute) {
+  if (hour > 23 || minute > 59) {
     return 'Em định thử anh đấy à?';
   }
   if (hour >= 20 && hour < 24) {
