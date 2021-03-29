@@ -34,6 +34,7 @@ function writeMsg(msg) {
 }
 
 window.addEventListener("load", () => {
+  if (isSleepTime) return;
   writeDB('loaded', { userAgent: md.ua });
 
   imgPosition = window.innerWidth / 2 - 60;

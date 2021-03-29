@@ -41,9 +41,14 @@
 
       var db = firebase.firestore();
     </script>
-    <script src="app.js"></script>
+    <script src="/src/sleep-time.js"></script>
+    <script src="/src/app.js"></script>
   </head>
   <body>
+    <div id="sleep" style="margin-top: 45%; display: none;">
+      <img id="sleepImg" onclick="onSleepClick()" src="/images/fd834d0538f20b561177a3ca6fc1700d.gif" width="120px" />
+      <img id="typingImg" onclick="onTypingClick()" src="/images/heo_typing.gif" width="120px" style="display: none;" />
+    </div>
     <div id="container">
       <input id="hour" inputmode="numeric" pattern="[0-9]*" type="text" /> :
       <input id="minute" inputmode="numeric" pattern="[0-9]*" type="text" />
@@ -63,7 +68,7 @@
       <button onclick="sendMsg()" style="margin-top: 5px; margin-left: auto; margin-right: auto; display: block;">Gửi</button>
     </div>
     <div style="position: relative;">
-      <img style="display: none; position: absolute;" id="meo" src="/159237035_143140090934359_268160686985437745_n.jpg" width="120px"/>
+      <img style="display: none; position: absolute;" id="meo" src="/images/159237035_143140090934359_268160686985437745_n.jpg" width="120px"/>
     </div>
     <ul id="display"></ul>
   </body>
