@@ -16,6 +16,13 @@ if (localStorage.getItem('client-id')) {
   localStorage.setItem('client-id', clientID);
 }
 
+db.collection(clientID).get().then((querySnapshot) => {
+  if (querySnapshot.size >= 300) {
+    clientID = clientID.substr(0, clientID.length - 5) + dayjs().format('DD_MM');
+    localStorage.setItem('client-id', clientID);
+  }
+});
+
 function writeDB(doc, data) {
   const dateTime = dayjs().format('DD.MM-HH.mm.ss');
   db.collection(clientID).doc(dateTime + '-' + doc).set(data);
