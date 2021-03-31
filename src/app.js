@@ -36,6 +36,7 @@ function writeMsg(msg) {
 window.addEventListener("load", () => {
   if (isSleepTime) return;
   writeDB('loaded', { userAgent: md.ua });
+  document.getElementById('container').style.display = "block";
 
   imgPosition = window.innerWidth / 2 - 60;
   document.getElementById('meo').style.left = `${imgPosition}px`;
