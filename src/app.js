@@ -40,13 +40,13 @@ window.addEventListener("load", () => {
   imgPosition = window.innerWidth / 2 - 60;
   document.getElementById('meo').style.left = `${imgPosition}px`;
 
-  const time = dayjs();
-  if ((time.hour() === 23 && time.minute() >= 55) || (time.hour() === 0 && time.minute() <= 30)) {
-    writeDB('seen', { time: time.format('DD.MM-HH.mm.ss') });
-    document.getElementById('container').style = "display: none";
-    showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này?');
-    document.getElementById('text-area').style = "display: block";
-  }
+  // const time = dayjs();
+  // if ((time.hour() === 23 && time.minute() >= 55) || (time.hour() === 0 && time.minute() <= 30)) {
+  //   writeDB('seen', { time: time.format('DD.MM-HH.mm.ss') });
+  //   document.getElementById('container').style = "display: none";
+  //   showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này?');
+  //   document.getElementById('text-area').style = "display: block";
+  // }
 });
 
 function validateInput(hour, minute) {
@@ -74,13 +74,13 @@ function calculateTime() {
 
   writeDB('click-ec-ec', { inputHour: hour.value, inputMinute: minute.value, levelSelect: levelEl.value });
   clickCount++;
-  if (clickCount >= 2) {
-    showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
-    showMsg('Tại sao con mèo nó lại nằm đây, tới tới lui lui - Tại vì tâm trạng ng làm app như mẹt con mèo đó đó', true);
-    document.getElementById('text-area').style = "display: block";
-  } else {
-    showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
-  }
+  // if (clickCount >= 2) {
+  //   showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
+  //   showMsg('Tại sao con mèo nó lại nằm đây, tới tới lui lui - Tại vì tâm trạng ng làm app như mẹt con mèo đó đó', true);
+  //   document.getElementById('text-area').style = "display: block";
+  // } else {
+  //   showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
+  // }
 
   const msg = validateInput(+hour.value, +minute.value);
 
@@ -118,6 +118,8 @@ function calculateTime() {
 function btnClick(type, time) {
   writeDB('click-' + type, { value: time });
   // showMsg('Buồn quá. Ko làm nữa..');
+  showMsg('- Tại sao con mèo nó lại nằm đây, tới tới lui lui');
+  showMsg('- Tại vì tâm trạng ng làm app như mẹt con mèo đó đó', true);
   document.getElementById('meo').style.display = 'block';
   document.getElementById('display').style.marginTop = '80px';
   if (type === 'plus' && imgPosition + 140 <= window.innerWidth) {
