@@ -3,6 +3,7 @@ const md = new MobileDetect(window.navigator.userAgent);
 
 let clickCount = 0;
 let imgPosition = 0;
+let snapShotSize = 0;
 
 var clientID = 'Others_' + dayjs().format('DD_MM_HH_mm');
 
@@ -17,6 +18,7 @@ if (localStorage.getItem('client-id')) {
 }
 
 db.collection(clientID).get().then((querySnapshot) => {
+  snapShotSize = querySnapshot.size;
   if (querySnapshot.size >= 300) {
     clientID = clientID.substr(0, clientID.length - 5) + dayjs().format('DD_MM');
     localStorage.setItem('client-id', clientID);
@@ -25,12 +27,14 @@ db.collection(clientID).get().then((querySnapshot) => {
 
 function writeDB(doc, data) {
   const dateTime = dayjs().format('DD.MM-HH.mm.ss');
-  db.collection(clientID).doc(dateTime + '-' + doc).set(data);
+  snapShotSize++;
+  db.collection(clientID).doc(dateTime + '-' + doc).set({ ...data, snapShotSize: snapShotSize });
 }
 
 function writeMsg(msg) {
   const dateTime = dayjs().format('DD.MM-HH.mm.ss');
-  db.collection(clientID + '_msg').doc(dateTime).set({msg: msg});
+  snapShotSize++;
+  db.collection(clientID + '_msg').doc(dateTime).set({msg: msg, snapShotSize: snapShotSize });
 }
 
 window.addEventListener("load", () => {
