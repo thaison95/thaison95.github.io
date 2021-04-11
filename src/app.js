@@ -39,12 +39,14 @@ function writeMsg(msg) {
 
 window.addEventListener("load", () => {
   if (isSleepTime) return;
-  writeDB('loaded', { userAgent: md.ua });
   document.getElementById('container').style.display = "block";
 
   imgPosition = window.innerWidth / 2 - 60;
   document.getElementById('meo').style.left = `${imgPosition}px`;
 
+  let isLoaded = loadCachedTime();
+  if (isLoaded) calculateTime();
+  writeDB('loaded', { userAgent: md.ua, loadFromCache: isLoaded });
   // const time = dayjs();
   // if ((time.hour() === 23 && time.minute() >= 55) || (time.hour() === 0 && time.minute() <= 30)) {
   //   writeDB('seen', { time: time.format('DD.MM-HH.mm.ss') });
@@ -95,6 +97,7 @@ function calculateTime() {
     return;
   }
 
+  cacheTime(hour.value, minute.value, levelEl.value);
   let timeToFeed = dayjs().hour(hour.value).minute(minute.value);
 
   const ul = document.createElement("ul");
