@@ -7,7 +7,7 @@ function cacheTime(hour, minute, level) {
 }
 
 function loadCachedTime() {
-  if (!cachedTime) return;
+  if (!cachedTime) return false;
   
   const [date, time, level] = cachedTime.split('_');
   if (date !== curDate) {
@@ -17,9 +17,9 @@ function loadCachedTime() {
 
   const [hour, minute] = time.split(':');
 
-  document.querySelector("#hour").value = hour;
-  document.querySelector("#minute").value = minute;
-  document.querySelector("#level").value = level;
+  document.querySelector("#hour").value = hour || 0;
+  document.querySelector("#minute").value = minute || 0;
+  document.querySelector("#level").value = level || 0;
 
   return true;
 }
