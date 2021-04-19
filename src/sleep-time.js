@@ -6,6 +6,8 @@ if (time.hour() === 23 || time.hour() < 4) {
   isSleepTime = true;
 }
 
+let seen = localStorage.getItem("seen");
+
 window.addEventListener("load", () => {
   if (!isSleepTime) return;
   writeDB("loaded", { msg: "sleep" });
@@ -13,14 +15,16 @@ window.addEventListener("load", () => {
   document.getElementById("container").style.display = "none";
   document.getElementById("sleep").style.display = "block";
   document.getElementById("msg").style.marginTop = "0";
+
+  seen = seen === "true";
 });
 
 function onSleepClick() {
   writeDB("click-sleep-" + sleepClickCount, { count: sleepClickCount });
-  if (time.hour() >= 0 && time.hour() < 4) {
+  if (((time.hour() === 23 && time.minute() >= 45) || time.hour() < 4) && !seen) {
     switch (sleepClickCount) {
       case 0:
-        showMsg("Nếu em đọc được dòng này thì");
+        showMsg("Nếu em đọc được cái này thì");
         break;
       case 1:
         showMsg("Anh chỉ muốn nói là");
@@ -50,6 +54,8 @@ function onSleepClick() {
         showMsg("Ngủ đi.");
         document.getElementById("sleepImg").style.display = "none";
         document.getElementById("typingImg").style.display = "inline";
+        localStorage.setItem('seen', true);
+        writeDB("click-sleep-seen" + sleepClickCount, { count: sleepClickCount });
         break;
     }
     sleepClickCount++;
@@ -57,7 +63,11 @@ function onSleepClick() {
   }
   switch (sleepClickCount) {
     case 0:
-      showMsg("Ngủ đi. Anh lock app từ 11h tới 4h rồi.");
+      if (!seen) {
+        showMsg("Ngủ đi. Anh lock app từ 11h tới 4h rồi.");
+      } else {
+        showMsg("Ngủ đi. Cái kia chỉ đọc đc 1 lần thôi.");
+      }
       break;
     case 1:
       showMsg("Đừng nhấn nữa.");
