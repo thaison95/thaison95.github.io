@@ -1,4 +1,4 @@
-const levelTime = [3.5, 3 + 25 / 60];
+const levelTime = [3.5, 3 + 25 / 60, 3 + 20 / 60];
 const md = new MobileDetect(window.navigator.userAgent);
 
 let clickCount = 0;
