@@ -125,9 +125,9 @@ function calculateTime() {
 
 function btnClick(type, time) {
   writeDB('click-' + type, { value: time });
-  // showMsg('Buồn quá. Ko làm nữa..');
-  showMsg('- Tại sao con mèo nó lại nằm đây, tới tới lui lui');
-  showMsg('- Tại vì tâm trạng ng làm app như mẹt con mèo đó đó', true);
+  showMsg('Chắc phải đổi thành con mèo đen thôii');
+  // showMsg('- Tại sao con mèo nó lại nằm đây, tới tới lui lui');
+  // showMsg('- Tại vì tâm trạng ng làm app như mẹt con mèo đó đó', true);
   document.getElementById('meo').style.display = 'block';
   document.getElementById('display').style.marginTop = '80px';
   if (type === 'plus' && imgPosition + 140 <= window.innerWidth) {

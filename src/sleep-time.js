@@ -16,51 +16,30 @@ window.addEventListener("load", () => {
   document.getElementById("sleep").style.display = "block";
   document.getElementById("msg").style.marginTop = "0";
 
+  let touchTimeStart;
+  const startTouchHeo = (event) => {
+    event.returnValue = false;
+    document.getElementById("noti").style.display = "block";
+    touchTimeStart = Date.now();
+  }
+
+  const endTouchHeo = () => {
+    setTimeout(() => {
+      document.getElementById("noti").style.display = "none";
+    }, 250);
+    writeDB("sleep-hold", { time: Date.now() - touchTimeStart });
+    holdTimer = 0;
+  }
+
+  let div1 = document.querySelector("#sleep");
+  div1.addEventListener("touchstart", startTouchHeo);
+  div1.addEventListener("touchend", endTouchHeo);
+
   seen = seen === "true";
 });
 
 function onSleepClick() {
   writeDB("click-sleep-" + sleepClickCount, { count: sleepClickCount });
-  // if (((time.hour() === 23 && time.minute() >= 45) || time.hour() < 4) && !seen) {
-  //   switch (sleepClickCount) {
-  //     case 0:
-  //       showMsg("Nếu em đọc được cái này thì");
-  //       break;
-  //     case 1:
-  //       showMsg("Anh chỉ muốn nói là");
-  //       break;
-  //     case 2:
-  //       showMsg("Anh");
-  //       break;
-  //     case 3:
-  //       showMsg("muốn");
-  //       break;
-  //     case 4:
-  //       showMsg("gặp");
-  //       break;
-  //     case 5:
-  //       showMsg("em");
-  //       break;
-  //     case 6:
-  //       showMsg("ở");
-  //       break;
-  //     case 7:
-  //       showMsg("kon tum");
-  //       break;
-  //     case 8:
-  //       showMsg("thôi");
-  //       break;
-  //     case 9:
-  //       showMsg("Ngủ đi.");
-  //       document.getElementById("sleepImg").style.display = "none";
-  //       document.getElementById("typingImg").style.display = "inline";
-  //       localStorage.setItem('seen', true);
-  //       writeDB("click-sleep-seen" + sleepClickCount, { count: sleepClickCount });
-  //       break;
-  //   }
-  //   sleepClickCount++;
-  //   return;
-  // }
   switch (sleepClickCount) {
     case 0:
       if (!seen) {

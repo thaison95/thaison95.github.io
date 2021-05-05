@@ -58,3 +58,9 @@ li {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+#sleepImg {
+    pointer-events: none;
+}
+
+.w3-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}
