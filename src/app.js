@@ -47,13 +47,6 @@ window.addEventListener("load", () => {
   let isLoaded = loadCachedTime();
   if (isLoaded) calculateTime();
   writeDB('loaded', { userAgent: md.ua, loadFromCache: isLoaded });
-  // const time = dayjs();
-  // if ((time.hour() === 23 && time.minute() >= 55) || (time.hour() === 0 && time.minute() <= 30)) {
-  //   writeDB('seen', { time: time.format('DD.MM-HH.mm.ss') });
-  //   document.getElementById('container').style = "display: none";
-  //   showMsg('12h rồi đấy. Sao e lại tiếp tục mở app vào giờ này?');
-  //   document.getElementById('text-area').style = "display: block";
-  // }
 });
 
 function validateInput(hour, minute) {
@@ -145,14 +138,4 @@ function showMsg(msg, is2nd) {
     msgEl = document.getElementById('msg2');
   }
   msgEl.textContent = msg;
-}
-
-function sendMsg() {
-  const msg = document.querySelector('#getMsg');
-  if (!msg.value || msg.value === 'em chưa nhập gì mà ಠ_ಠ') {
-    msg.value = 'em chưa nhập gì mà ಠ_ಠ';
-  } else {
-    writeMsg(msg.value);
-    msg.value = '';
-  }
 }
