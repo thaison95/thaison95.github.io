@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
     event.returnValue = false;
     document.getElementById("noti").src = notiImg[Math.floor(Math.random() * 3)];
     document.getElementById("noti").style.display = "block";
-    // showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê..');
+    showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê..');
     touchTimeStart = Date.now();
   }
 
