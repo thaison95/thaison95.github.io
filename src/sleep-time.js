@@ -23,9 +23,10 @@ window.addEventListener("load", () => {
   let touchTimeStart;
   const startTouchHeo = (event) => {
     event.returnValue = false;
+    showMsg("", true);
     document.getElementById("noti").src = notiImg[Math.floor(Math.random() * 3)];
     document.getElementById("noti").style.display = "block";
-    showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê..');
+    showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê 🥵');
     touchTimeStart = Date.now();
   }
 
@@ -69,6 +70,7 @@ function onSleepClick() {
 
 function onTypingClick() {
   showMsg("");
+  showMsg("Hay chưa :)) Tính năng ẩn chứ ko phải bug nha", true);
   document.getElementById("sleepImg").style.display = "inline";
   document.getElementById("typingImg").style.display = "none";
 }
