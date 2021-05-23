@@ -7,6 +7,7 @@ if (time.hour() === 23 || time.hour() < 4) {
 }
 
 const notiImg = [
+  '/images/189239174_521853969048884_7359803088458713595_n.jpg',
   '/images/z2472390568329_8a1efc734df3bdbc4bc249ed6bd5a371.jpg',
   '/images/z2478125267574_fd93713f093341f6b5d486ab8c0b5a9f.jpg',
   '/images/z2478125270017_c9adbecc798f7de6d3faad2815100b8c.jpg'
@@ -24,7 +25,7 @@ window.addEventListener("load", () => {
   const startTouchHeo = (event) => {
     event.returnValue = false;
     showMsg("", true);
-    document.getElementById("noti").src = notiImg[Math.floor(Math.random() * 3)];
+    document.getElementById("noti").src = notiImg[0];
     document.getElementById("noti").style.display = "block";
     // showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê 🥵');
     touchTimeStart = Date.now();
@@ -70,7 +71,8 @@ function onSleepClick() {
 
 function onTypingClick() {
   showMsg("");
-  showMsg("Hay chưa :)) Tính năng ẩn chứ ko phải bug nha", true);
+  writeDB("sleep-hold", { sleepHeo: true });
+  // showMsg("Hay chưa :)) Tính năng ẩn chứ ko phải bug nha", true);
   document.getElementById("sleepImg").style.display = "inline";
   document.getElementById("typingImg").style.display = "none";
 }
