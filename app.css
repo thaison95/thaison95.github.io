@@ -1,11 +1,12 @@
 html {
     -webkit-text-size-adjust: none;
     touch-action: pan-y;
+    font-size: 16px;
 }
 
 body {
     text-align: center;
-    padding-top: 50px;
+    padding-top: 20%;
 }
 
 input {
@@ -43,7 +44,7 @@ pre {
     box-sizing: border-box;
 }
 
-button {
+button:not(.btn-sm) {
     margin-top: 10px;
     font-size: 16px;
 }
@@ -55,8 +56,8 @@ ul {
 }
 
 li {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 #sleepImg {

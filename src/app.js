@@ -1,5 +1,14 @@
 const levelTime = [3.5, 3 + 25 / 60, 3 + 20 / 60];
 const md = new MobileDetect(window.navigator.userAgent);
+const randomColors = [
+  '#dc3545',
+  '#198754',
+  '#ffc107',
+  '#31d2f2',
+  '#212529',
+  'transparent',
+  'transparent',
+];
 
 let clickCount = 0;
 let imgPosition = 0;
@@ -17,35 +26,29 @@ if (localStorage.getItem('client-id')) {
   localStorage.setItem('client-id', clientID);
 }
 
-db.collection(clientID).get().then((querySnapshot) => {
-  snapShotSize = querySnapshot.size;
-  if (querySnapshot.size >= 300) {
-    clientID = clientID.substr(0, clientID.length - 5) + dayjs().format('DD_MM');
-    localStorage.setItem('client-id', clientID);
-  }
-});
-
 function writeDB(doc, data) {
+  if (!db) return;
   const dateTime = dayjs().format('DD.MM-HH.mm.ss');
   snapShotSize++;
   db.collection(clientID).doc(dateTime + '-' + doc).set({ ...data, snapShotSize: snapShotSize });
 }
 
-function writeMsg(msg) {
-  const dateTime = dayjs().format('DD.MM-HH.mm.ss');
-  snapShotSize++;
-  db.collection(clientID + '_msg').doc(dateTime).set({msg: msg, snapShotSize: snapShotSize });
-}
-
 window.addEventListener("load", () => {
   if (isSleepTime) return;
+
   document.getElementById('container').style.display = "block";
 
   imgPosition = window.innerWidth / 2 - 60;
   document.getElementById('meo').style.left = `${imgPosition}px`;
 
   let isLoaded = loadCachedTime();
-  if (isLoaded) calculateTime();
+  if (isLoaded) {
+    calculateTime();
+  } else {
+    const dateTime = dayjs();
+    document.querySelector("#hour").value = dateTime.hour();
+    document.querySelector("#minute").value = dateTime.minute();
+  }
   writeDB('loaded', { userAgent: md.ua, loadFromCache: isLoaded });
 });
 
@@ -106,9 +109,9 @@ function calculateTime() {
       };
       liEl += `
         <li>
-          <button style="margin-right: 10px" onclick="btnClick('minus', '${timeToFeed.format('HH:mm')}')">-</button>
-            ${timeToFeed.format('HH:mm')}
-          <button style="margin-left: 10px" onclick="btnClick('plus', '${timeToFeed.format('HH:mm')}')">+</button>
+          <button type="button" class="btn btn-danger btn-sm" style="margin-right: 10px" onclick="btnClick('minus', '${timeToFeed.format('HH:mm')}')">-</button>
+            <span>${timeToFeed.format('HH:mm')}</span>
+          <button type="button" class="btn btn-success btn-sm" style="margin-left: 10px" onclick="btnClick('plus', '${timeToFeed.format('HH:mm')}')">+</button>
         </li>
       `;
     }
@@ -118,9 +121,6 @@ function calculateTime() {
 
 function btnClick(type, time) {
   writeDB('click-' + type, { value: time });
-  // showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê 🥵');
-  // showMsg('- Tại sao con mèo nó lại nằm đây, tới tới lui lui');
-  // showMsg('- Tại vì tâm trạng ng làm app như mẹt con mèo đó đó', true);
   document.getElementById('meo').style.display = 'block';
   document.getElementById('display').style.marginTop = '80px';
   if (type === 'plus' && imgPosition + 140 <= window.innerWidth) {
@@ -130,6 +130,13 @@ function btnClick(type, time) {
     imgPosition -= 15;
   }
   document.getElementById('meo').style.left = `${imgPosition}px`;
+  const overlayColor = Math.floor(Math.random() * randomColors.length);
+  document.getElementById('meo').style.background = randomColors[overlayColor];
+  if (randomColors[overlayColor] === 'transparent') {
+    document.getElementById('meo-img').style.opacity = 1;
+  } else {
+    document.getElementById('meo-img').style.opacity = 0.5;
+  }
 }
 
 function showMsg(msg, is2nd) {
