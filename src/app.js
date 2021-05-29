@@ -77,21 +77,14 @@ function calculateTime() {
 
   writeDB('click-ec-ec', { inputHour: hour.value, inputMinute: minute.value, levelSelect: levelEl.value });
   clickCount++;
-  // if (clickCount >= 2) {
-  //   showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
-  //   showMsg('Tại sao con mèo nó lại nằm đây, tới tới lui lui - Tại vì tâm trạng ng làm app như mẹt con mèo đó đó', true);
-  //   document.getElementById('text-area').style = "display: block";
-  // } else {
-  //   showMsg('Anh biết ngày nào e cũng mở app lên nhưng ko phải để tính giờ. Có đúng ko?'); // clear msg
+
+  // const msg = validateInput(+hour.value, +minute.value);
+
+  // if (msg) {
+  //   // showMsg(msg);
+  //   displayEl.innerHTML = '';
+  //   return;
   // }
-
-  const msg = validateInput(+hour.value, +minute.value);
-
-  if (msg) {
-    // showMsg(msg);
-    displayEl.innerHTML = '';
-    return;
-  }
 
   cacheTime(hour.value, minute.value, levelEl.value);
   let timeToFeed = dayjs().hour(hour.value).minute(minute.value);

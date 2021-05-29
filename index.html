@@ -121,19 +121,20 @@
       />
     </div>
     <div id="container" style="display: none" >
-      <div style="display: inline-block; width: 150px;">
-        <div class="input-group">
+      <div class="input-line">
+        <div class="input-group" style="width: 150px;">
           <input id="hour" inputmode="numeric" pattern="[0-9]*"  type="text" class="form-control text-center">
           <span class="input-group-text">h</span>
           <input id="minute" inputmode="numeric" pattern="[0-9]*" type="text" class="form-control text-center">
         </div>
+        <div style="width: 150px;">
+          <select id="level" class="form-select" style="padding-left: 0.4rem; padding-right: 1.75rem;">
+            <option value="0">Cấp 12-13 (3h30m)</option>
+            <option value="1">Cấp 14-15 (3h25m)</option>
+            <option value="2" selected="selected">Cấp 16 (3h20m)</option>
+          </select>
+        </div>
       </div>
-      <select id="level" class="form-select" style="display: inline-block; width: 150px; padding-left: 0.4rem; padding-right: 1.75rem;">
-        <option value="0">Cấp 12-13 (3h30m)</option>
-        <option value="1">Cấp 14-15 (3h25m)</option>
-        <option value="2" selected="selected">Cấp 16 (3h20m)</option>
-      </select>
-      <br />
       <button type="button" style="background: transparent;" class="btn btn-outline-success btn-lg" onclick="calculateTime()">
         <img src="/images/ec-ec.png" width="50px"/>
       </button>
