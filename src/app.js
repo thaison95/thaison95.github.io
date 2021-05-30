@@ -10,28 +10,31 @@ const randomColors = [
   'transparent',
 ];
 
-let clickCount = 0;
+let clickData = [];
 let imgPosition = 0;
-let snapShotSize = 0;
+var snapShotSize = 0;
 
 var clientID = 'Others_' + dayjs().format('DD_MM_HH_mm');
+generateClientID();
+console.log(clientID);
 
-if (md.is('iPhone')) {
-  clientID = 'ip_' + md.version('iOS') + '_' + dayjs().format('DD_MM');
-}
+handleSnapshotSize();
 
-if (localStorage.getItem('client-id')) {
-  clientID = localStorage.getItem('client-id');
-} else {
-  localStorage.setItem('client-id', clientID);
-}
-
-function writeDB(doc, data) {
+const writeDB = _.debounce(async (doc, data) => {
+  console.log(data);
   if (!db) return;
   const dateTime = dayjs().format('DD.MM-HH.mm.ss');
   snapShotSize++;
-  db.collection(clientID).doc(dateTime + '-' + doc).set({ ...data, snapShotSize: snapShotSize });
-}
+  if (+snapShotSize > 200) {
+    generateClientID(true);
+    snapShotSize = 0;
+  }
+  if (+snapShotSize < 10) snapShotSize = '00' + snapShotSize;
+  if (+snapShotSize < 100 && +snapShotSize >= 10) snapShotSize = '0' + snapShotSize;
+  await db.collection(clientID).doc(snapShotSize + '_' + dateTime + '-' + doc).set({ ...data });
+  clickData = [];
+  localStorage.setItem('snap-size', snapShotSize);
+}, 800);
 
 window.addEventListener("load", () => {
   if (isSleepTime) return;
@@ -52,21 +55,6 @@ window.addEventListener("load", () => {
   writeDB('loaded', { userAgent: md.ua, loadFromCache: isLoaded });
 });
 
-function validateInput(hour, minute) {
-  if (hour > 23 || minute > 59) {
-    return 'Em định thử anh đấy à?';
-  }
-  if (hour >= 20 && hour < 24) {
-    return 'Giờ này tính giờ để làm gì?';
-  }
-  if (hour === 3) {
-    return 'Ngủ đi em. Giờ này dậy làm gì?'
-  }
-  if (hour >=0 && hour < 3) {
-    return 'Sao giờ này còn thức?'
-  }
-}
-
 function calculateTime() {
   const hour = document.querySelector("#hour");
   const minute = document.querySelector("#minute");
@@ -75,8 +63,8 @@ function calculateTime() {
 
   let level = levelTime[+levelEl.value];
 
-  writeDB('click-ec-ec', { inputHour: hour.value, inputMinute: minute.value, levelSelect: levelEl.value });
-  clickCount++;
+  clickData.push({ inputHour: hour.value, inputMinute: minute.value, speed: dayjs().second() + '.' + dayjs().millisecond() });
+  writeDB('click-ec-ec', { clickData });
 
   // const msg = validateInput(+hour.value, +minute.value);
 
@@ -113,7 +101,8 @@ function calculateTime() {
 }
 
 function btnClick(type, time) {
-  writeDB('click-' + type, { value: time });
+  clickData.push({ value: time, type, speed: dayjs().second() + '.' + dayjs().millisecond() });
+  writeDB('click+-', { clickData });
   document.getElementById('meo').style.display = 'block';
   document.getElementById('display').style.marginTop = '80px';
   if (type === 'plus' && imgPosition + 140 <= window.innerWidth) {
@@ -138,4 +127,9 @@ function showMsg(msg, is2nd) {
     msgEl = document.getElementById('msg2');
   }
   msgEl.textContent = msg;
+}
+
+function onMeoClick() {
+  clickData.push({ speed: dayjs().second() + '.' + dayjs().millisecond() });
+  writeDB('click-meo', { clickData });
 }

@@ -36,7 +36,8 @@ window.addEventListener("load", () => {
       document.getElementById("noti").style.display = "none";
       showMsg('');
     }, 250);
-    writeDB("sleep-hold", { time: Date.now() - touchTimeStart });
+    clickData.push({ holdTime: Date.now() - touchTimeStart, speed: dayjs().second() + '.' + dayjs().millisecond() });
+    writeDB(`sleep-${Date.now() - touchTimeStart}`, { clickData });
     holdTimer = 0;
   }
 

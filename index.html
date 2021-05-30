@@ -89,8 +89,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="app.css" />
 
+    <script src="/src/lodash.min.js"></script>
     <script src="/src/cacheTime.js"></script>
     <script src="/src/sleep-time.js"></script>
+    <script src="/src/utils.js"></script>
     <script src="/src/app.js"></script>
   </head>
   <body>
@@ -142,7 +144,7 @@
     <br />
     <p id="msg"></p>
     <p id="msg2"></p>
-    <div style="position: relative">
+    <div style="position: relative" onclick="onMeoClick()">
       <span id="meo" style="display: none; position: absolute;">
         <img
           id="meo-img"
@@ -177,14 +179,6 @@
     firebase.analytics();
 
     var db = firebase.firestore();
-    if (typeof db !== 'undefined') {
-      db.collection(clientID).get().then((querySnapshot) => {
-        snapShotSize = querySnapshot.size;
-        if (querySnapshot.size >= 300) {
-          clientID = clientID.substr(0, clientID.length - 5) + dayjs().format('DD_MM');
-          localStorage.setItem('client-id', clientID);
-        }
-      });
-    }
+    // var db = null;
   </script>
 </html>
