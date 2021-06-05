@@ -77,6 +77,7 @@ function onSleepClick() {
 
 function onTypingClick() {
   showMsg("");
+  clickData.push({ value: 'SLEEP HEOOOOOOOOOO' });
   writeDB("sleep-heo", { sleepHeo: true });
   // showMsg("Hay chưa :)) Tính năng ẩn chứ ko phải bug nha", true);
   document.getElementById("sleepImg").style.display = "inline";
