@@ -13,8 +13,7 @@ const notiImg = [
   '/images/z2478125270017_c9adbecc798f7de6d3faad2815100b8c.jpg'
 ];
 
-window.addEventListener("load", () => {
-  if (!isSleepTime) return;
+function sleepInit() {
   writeDB("loaded", { msg: "sleep" });
 
   document.getElementById("container").style.display = "none";
@@ -24,7 +23,7 @@ window.addEventListener("load", () => {
   let touchTimeStart;
   const startTouchHeo = (event) => {
     event.returnValue = false;
-    showMsg("", true);
+    showMsg("");
     document.getElementById("noti").src = notiImg[0];
     document.getElementById("noti").style.display = "block";
     // showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê 🥵');
@@ -34,7 +33,6 @@ window.addEventListener("load", () => {
   const endTouchHeo = () => {
     setTimeout(() => {
       document.getElementById("noti").style.display = "none";
-      showMsg('');
     }, 250);
     clickData.push({ holdTime: Date.now() - touchTimeStart, speed: dayjs().second() + '.' + dayjs().millisecond() });
     writeDB(`sleep-${Date.now() - touchTimeStart}`, { clickData });
@@ -44,6 +42,13 @@ window.addEventListener("load", () => {
   let div1 = document.querySelector("#sleep");
   div1.addEventListener("touchstart", startTouchHeo);
   div1.addEventListener("touchend", endTouchHeo);
+}
+
+window.addEventListener("load", () => {
+  if (!isSleepTime) return;
+  isLoadBeforeSleep = false;
+  
+  sleepInit();
 });
 
 function onSleepClick() {

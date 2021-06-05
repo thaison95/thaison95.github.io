@@ -37,3 +37,15 @@ function validateInput(hour, minute) {
     return 'Sao giờ này còn thức?'
   }
 }
+
+function clock() {
+  const curTime = dayjs();
+  if (isLoadBeforeSleep && !isSleepTime && curTime.hour() === 23) {
+    isSleepTime = true;
+    sleepInit();
+    showMsg('Toy đã fix ròi nhaá');
+  }
+  setTimeout(() => {
+    clock();
+  }, 1000);
+}

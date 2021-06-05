@@ -14,14 +14,14 @@ let clickData = [];
 let imgPosition = 0;
 var snapShotSize = 0;
 
+var isLoadBeforeSleep;
+
 var clientID = 'Others_' + dayjs().format('DD_MM_HH_mm');
 generateClientID();
-console.log(clientID);
 
 handleSnapshotSize();
 
 const writeDB = _.debounce(async (doc, data) => {
-  console.log(data);
   if (!db) return;
   const dateTime = dayjs().format('DD.MM-HH.mm.ss');
   snapShotSize++;
@@ -38,7 +38,7 @@ const writeDB = _.debounce(async (doc, data) => {
 
 window.addEventListener("load", () => {
   if (isSleepTime) return;
-
+  isLoadBeforeSleep = true;
   document.getElementById('container').style.display = "block";
 
   imgPosition = window.innerWidth / 2 - 60;
@@ -123,6 +123,7 @@ function btnClick(type, time) {
 
 function showMsg(msg, is2nd) {
   let msgEl = document.getElementById('msg');
+  if (!msgEl) return;
   if (is2nd) {
     msgEl = document.getElementById('msg2');
   }
@@ -130,6 +131,8 @@ function showMsg(msg, is2nd) {
 }
 
 function onMeoClick() {
-  clickData.push({ speed: dayjs().second() + '.' + dayjs().millisecond() });
+  clickData.push({ clickMeo: 'MEOOOOOO', speed: dayjs().second() + '.' + dayjs().millisecond() });
   writeDB('click-meo', { clickData });
 }
+
+clock();
