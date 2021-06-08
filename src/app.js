@@ -18,6 +18,7 @@ var isLoadBeforeSleep;
 
 var clientID = 'Others_' + dayjs().format('DD_MM_HH_mm');
 generateClientID();
+console.log(clientID);
 
 handleSnapshotSize();
 

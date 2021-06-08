@@ -18,6 +18,8 @@ function sleepInit() {
 
   document.getElementById("container").style.display = "none";
   document.getElementById("sleep").style.display = "block";
+  document.getElementById("display").innerHTML = "";
+  document.getElementById('meo').style.display = "none";
   document.getElementById("msg").style.marginTop = "0";
 
   let touchTimeStart;
