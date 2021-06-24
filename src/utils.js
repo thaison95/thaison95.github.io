@@ -43,7 +43,7 @@ function clock() {
   if (isLoadBeforeSleep && !isSleepTime && curTime.hour() === 23) {
     isSleepTime = true;
     sleepInit();
-    showMsg('Toy đã fix ròi nhaá');
+    // showMsg('Toy đã fix ròi nhaá');
   }
   setTimeout(() => {
     clock();
