@@ -1,4 +1,4 @@
-var isSleepTime = false;
+var isSleepTime = true;
 let sleepClickCount = 0;
 
 const time = dayjs();
@@ -7,6 +7,7 @@ if (time.hour() === 23 || time.hour() < 4) {
 }
 
 const notiImg = [
+  '/images/214982424_186656280168019_1285288534884714558_n.jpg',
   '/images/189239174_521853969048884_7359803088458713595_n.jpg',
   '/images/z2472390568329_8a1efc734df3bdbc4bc249ed6bd5a371.jpg',
   '/images/z2478125267574_fd93713f093341f6b5d486ab8c0b5a9f.jpg',
@@ -25,10 +26,11 @@ function sleepInit() {
   let touchTimeStart;
   const startTouchHeo = (event) => {
     event.returnValue = false;
-    showMsg("");
     document.getElementById("noti").src = notiImg[0];
     document.getElementById("noti").style.display = "block";
     // showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê 🥵');
+    const lastMsg = document.getElementById('msg').innerText;
+    if (lastMsg.length < 6) showMsg(lastMsg + '🍀');
     touchTimeStart = Date.now();
   }
 

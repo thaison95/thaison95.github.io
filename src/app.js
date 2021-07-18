@@ -102,6 +102,7 @@ function calculateTime() {
 }
 
 function btnClick(type, time) {
+  return;
   clickData.push({ value: time, type, speed: dayjs().second() + '.' + dayjs().millisecond() });
   writeDB('click+-', { clickData });
   document.getElementById('meo').style.display = 'block';
