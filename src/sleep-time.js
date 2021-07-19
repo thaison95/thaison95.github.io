@@ -1,4 +1,4 @@
-var isSleepTime = true;
+var isSleepTime = false;
 let sleepClickCount = 0;
 
 const time = dayjs();
@@ -29,8 +29,8 @@ function sleepInit() {
     document.getElementById("noti").src = notiImg[0];
     document.getElementById("noti").style.display = "block";
     // showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê 🥵');
-    const lastMsg = document.getElementById('msg').innerText;
-    if (lastMsg.length < 6) showMsg(lastMsg + '🍀');
+    // const lastMsg = document.getElementById('msg').innerText;
+    // if (lastMsg.length < 6) showMsg(lastMsg + '🍀');
     touchTimeStart = Date.now();
   }
 
