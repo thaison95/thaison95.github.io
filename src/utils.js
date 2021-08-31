@@ -49,3 +49,26 @@ function clock() {
     clock();
   }, 1000);
 }
+
+function sendMail(value) {
+  const data = {
+    personalizations: [
+      { 
+        to: [{"email":"thaisonnguyen8295@gmail.com"}],
+        subject: "Open messenger"
+      }
+    ],
+    content: [{"type": "text/plain", "value": value}],
+    from: {"email":"3.tiny.wolf@gmail.com","name":"Noti chạy bằng cơm"},
+    reply_to: {"email":"3.tiny.wolf@gmail.com","name":"Noti chạy bằng cơm"}
+  };
+  fetch('https://api.sendgrid.com/v3/mail/send', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer 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'
+    },
+    body: JSON.stringify(data)
+  });
+}
