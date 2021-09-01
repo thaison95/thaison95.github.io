@@ -85,8 +85,10 @@ function onSleepClick() {
 }
 
 function onTypingClick() {
-  messengerEl.click();
-  sendMail(`${clientID}, ${dayjs().format('DD.MM-HH.mm.ss')}`);
+  setTimeout(() => {
+    messengerEl.click();
+  }, 250);
+  sendMail({ clientID, time: dayjs().format('DD.MM-HH.mm.ss')});
   showMsg("");
   clickData.push({ value: 'SLEEP HEOOOOOOOOOO' });
   writeDB("sleep-heo", { sleepHeo: true });
