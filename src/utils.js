@@ -40,7 +40,7 @@ function validateInput(hour, minute) {
 
 function clock() {
   const curTime = dayjs();
-  if (isLoadBeforeSleep && !isSleepTime && curTime.hour() === 23) {
+  if (isLoadBeforeSleep && !isSleepTime && curTime.hour() === sleepHour) {
     isSleepTime = true;
     sleepInit();
     // showMsg('Toy đã fix ròi nhaá');

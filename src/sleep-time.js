@@ -1,8 +1,8 @@
 var isSleepTime = false;
 let sleepClickCount = 0;
-
+var sleepHour = 22;
 const time = dayjs();
-if (time.hour() === 22 || time.hour() < 4) {
+if (time.hour() === sleepHour || time.hour() < 4) {
   isSleepTime = true;
 }
 
