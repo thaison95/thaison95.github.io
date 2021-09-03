@@ -1,9 +1,7 @@
-var isSleepTime = false;
+var isSleep = false;
 let sleepClickCount = 0;
-var sleepHour = 22;
-const time = dayjs();
-if (time.hour() === sleepHour || time.hour() < 4) {
-  isSleepTime = true;
+if (isSleepTime()) {
+  isSleep = true;
 }
 
 const notiImg = [
@@ -54,7 +52,7 @@ function sleepInit() {
 }
 
 window.addEventListener("load", () => {
-  if (!isSleepTime) return;
+  if (!isSleep) return;
   isLoadBeforeSleep = false;
   
   sleepInit();

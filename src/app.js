@@ -38,7 +38,7 @@ const writeDB = _.debounce(async (doc, data) => {
 }, 800);
 
 window.addEventListener("load", () => {
-  if (isSleepTime) return;
+  if (isSleep) return;
   isLoadBeforeSleep = true;
   document.getElementById('container').style.display = "block";
 

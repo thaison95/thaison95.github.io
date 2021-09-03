@@ -38,10 +38,20 @@ function validateInput(hour, minute) {
   }
 }
 
-function clock() {
+function isSleepTime() {
   const curTime = dayjs();
-  if (isLoadBeforeSleep && !isSleepTime && curTime.hour() === sleepHour) {
-    isSleepTime = true;
+  const sleepHourAm = 4;
+  const sleepHourPm = 22;
+  // 04:00 at the same curTime DAY
+  const sleepAmDate = dayjs().hour(sleepHourAm).minute(0).second(0);
+  // 22:00 at the same curTime DAY
+  const sleepPmDate = dayjs().hour(sleepHourPm).minute(0).second(0);
+  return curTime.isBefore(sleepAmDate) || curTime.isSameOrAfter(sleepPmDate);
+}
+
+function clock() {
+  if (isLoadBeforeSleep && !isSleep && isSleepTime()) {
+    isSleep = true;
     sleepInit();
     // showMsg('Toy đã fix ròi nhaá');
   }
