@@ -83,9 +83,9 @@ function drawHeart() {
     sendMail({ clientID, time: dayjs().format('DD.MM-HH.mm.ss')});
   }
   if (heartCount === 99) {
-    setTimeout(() => {
-      messengerEl.click();
-    }, 250);
+    // setTimeout(() => {
+    //   messengerEl.click();
+    // }, 250);
     setTimeout(() => {
       const listHearts = document.getElementsByTagName('img');
       for (let i = 0; i < listHearts.length; i++) {
