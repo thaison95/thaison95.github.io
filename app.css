@@ -7,6 +7,8 @@ html {
 body {
     text-align: center;
     padding-top: 20%;
+    height: 100vh;
+    background-size: cover;
 }
 
 .input-line {
@@ -70,6 +72,8 @@ li {
 
 #sleepImg {
     pointer-events: none;
+    margin-left: -75px;
+    margin-top: -20px;
 }
 
 .w3-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}

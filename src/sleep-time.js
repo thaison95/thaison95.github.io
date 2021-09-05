@@ -18,6 +18,10 @@ var messengerEl;
 function sleepInit() {
   writeDB("loaded", { msg: "sleep" });
 
+  const loadBackgound = () => {
+    document.body.style.backgroundImage = `url(${backgroundImgUrl})`;
+  }
+
   document.getElementById("container").style.display = "none";
   document.getElementById("sleep").style.display = "block";
   document.getElementById("display").innerHTML = "";
@@ -27,8 +31,15 @@ function sleepInit() {
   let touchTimeStart;
   const startTouchHeo = (event) => {
     event.returnValue = false;
-    // document.getElementById("noti").src = notiImg[0];
-    document.getElementById("noti").style.display = "block";
+    if (!document.body.style.backgroundImage) {
+      loadBackgound();
+      document.getElementById("typingImg").style.margin = '-20px 0 0 -75px';
+      initHeartCal();
+    } else {
+      drawHeart();
+    }
+    // document.getElementById("noti").src = backgroundImgUrl;
+    // document.getElementById("noti").style.display = "block";
     // showMsg('Tuần trước ngày nào cũng gặp xong giờ tốn nhiều ca-lo ghê 🥵');
     // const lastMsg = document.getElementById('msg').innerText;
     // if (lastMsg.length < 6) showMsg(lastMsg + '🍀');
@@ -36,9 +47,9 @@ function sleepInit() {
   }
 
   const endTouchHeo = () => {
-    setTimeout(() => {
-      document.getElementById("noti").style.display = "none";
-    }, 250);
+    // setTimeout(() => {
+    //   document.getElementById("noti").style.display = "none";
+    // }, 250);
     clickData.push({ holdTime: Date.now() - touchTimeStart, speed: dayjs().second() + '.' + dayjs().millisecond() });
     writeDB(`sleep-${Date.now() - touchTimeStart}`, { clickData });
     holdTimer = 0;
