@@ -51,7 +51,7 @@ function sleepInit() {
     //   document.getElementById("noti").style.display = "none";
     // }, 250);
     clickData.push({ holdTime: Date.now() - touchTimeStart, speed: dayjs().second() + '.' + dayjs().millisecond() });
-    writeDB(`sleep-${Date.now() - touchTimeStart}`, { clickData });
+    // writeDB(`sleep-${Date.now() - touchTimeStart}`, { clickData });
     holdTimer = 0;
   }
 
