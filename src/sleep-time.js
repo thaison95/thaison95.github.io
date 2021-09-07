@@ -50,7 +50,7 @@ function sleepInit() {
     // setTimeout(() => {
     //   document.getElementById("noti").style.display = "none";
     // }, 250);
-    clickData.push({ holdTime: Date.now() - touchTimeStart, speed: dayjs().second() + '.' + dayjs().millisecond() });
+    // clickData.push({ holdTime: Date.now() - touchTimeStart, speed: dayjs().second() + '.' + dayjs().millisecond() });
     // writeDB(`sleep-${Date.now() - touchTimeStart}`, { clickData });
     holdTimer = 0;
   }
@@ -97,7 +97,7 @@ function onTypingClick() {
   setTimeout(() => {
     messengerEl.click();
   }, 250);
-  sendMail({ clientID, time: dayjs().format('DD.MM-HH.mm.ss')});
+  sendMail({ clientID, reason: 'sleepClick' });
   showMsg("");
   clickData.push({ value: 'SLEEP HEOOOOOOOOOO' });
   writeDB("sleep-heo", { sleepHeo: true });

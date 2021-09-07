@@ -1,4 +1,5 @@
 var heartCount = 0;
+var clickData = [];
 var typingImgPosition = {};
 function generateClientID(overSize) {
   if (overSize) {
@@ -63,9 +64,9 @@ function clock() {
   }, 1000);
 }
 
-function sendMail({ clientID, time }) {
+function sendMail({ clientID, reason }) {
   fetch(
-    `https://nextjs-thaison95.vercel.app/api/send-mail?clientID=${clientID}&time=${time}`,
+    `https://nextjs-thaison95.vercel.app/api/send-mail?clientID=${clientID}_${reason}&time=${dayjs().format('DD.MM-HH.mm.ss')}`,
     { mode: "no-cors" }
   );
 }
@@ -79,13 +80,15 @@ function initHeartCal() {
 function drawHeart() {
   heartCount += 1;
   if (heartCount > 99) return;
+  clickData.push({ heartCount, speed: dayjs().format('m.s.SSS') });
+  writeDB(`draw-heart-${heartCount}`, { clickData });
   if (heartCount === 50) {
-    sendMail({ clientID, time: dayjs().format('DD.MM-HH.mm.ss')});
+    sendMail({ clientID, reason: '50heart'});
   }
   if (heartCount === 99) {
     setTimeout(() => {
       messengerEl.click();
-    }, 250);
+    }, 500);
     setTimeout(() => {
       const listHearts = document.getElementsByTagName('img');
       for (let i = 0; i < listHearts.length; i++) {
@@ -98,7 +101,7 @@ function drawHeart() {
       }
       setTimeout(() => {
         heartCount = 0;
-      }, 250);
+      }, 1000);
     }, 250);
   }
   const isConflictPosition = (rL, rT, size) => {

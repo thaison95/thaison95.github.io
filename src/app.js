@@ -10,7 +10,6 @@ const randomColors = [
   'transparent',
 ];
 
-let clickData = [];
 let imgPosition = 0;
 var snapShotSize = 0;
 
