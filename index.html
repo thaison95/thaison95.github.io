@@ -190,9 +190,11 @@
     var imagesRef = storage.ref().child('chuot96/sep2021.jpg');
 
     var backgroundImgUrl = '';
+    const startGetUrlTime = Date.now();
     imagesRef.getDownloadURL().then(url => {
       document.getElementById("noti").src = url;
       backgroundImgUrl = url;
+      writeDB('load-background-url', { time: Date.now() - startGetUrlTime });
     });
     
   </script>

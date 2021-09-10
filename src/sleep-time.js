@@ -33,6 +33,7 @@ function sleepInit() {
     event.returnValue = false;
     if (!document.body.style.backgroundImage) {
       loadBackgound();
+      writeDB('set-background', { time: dayjs().format('m.s.SSS'), url: document.body.style.backgroundImage });
       document.getElementById("typingImg").style.margin = '-20px 0 0 -75px';
       initHeartCal();
     } else {
