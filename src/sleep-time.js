@@ -19,7 +19,8 @@ function sleepInit() {
   writeDB("loaded", { msg: "sleep" });
 
   const loadBackgound = () => {
-    document.body.style.backgroundImage = `url(${backgroundImgUrl})`;
+    // document.body.style.backgroundImage = `url(${backgroundImgUrl})`;
+    document.body.style.backgroundImage = `url(./images/IMG_2356.jpg)`;
   }
 
   document.getElementById("container").style.display = "none";
@@ -34,7 +35,11 @@ function sleepInit() {
     if (!document.body.style.backgroundImage) {
       loadBackgound();
       writeDB('set-background', { time: dayjs().format('m.s.SSS'), url: document.body.style.backgroundImage });
-      document.getElementById("typingImg").style.margin = '-20px 0 0 -75px';
+      document.getElementById("typingImg").style.margin = '23px 0 0 -75px';
+      document.getElementById("typingImg").style.transform = 'scaleX(-1)';
+      document.getElementById("sleepImg").style.margin = '23px 0 0 -75px';
+      // -webkit-transform: scaleX(-1);
+      // transform: scaleX(-1);
       initHeartCal();
     } else {
       drawHeart();
