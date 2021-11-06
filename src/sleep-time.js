@@ -20,7 +20,7 @@ function sleepInit() {
 
   const loadBackgound = () => {
     // document.body.style.backgroundImage = `url(${backgroundImgUrl})`;
-    document.body.style.backgroundImage = `url(./images/IMG_2356.jpg)`;
+    document.body.style.backgroundImage = `url(./images/IMG_2509.jpg)`;
   }
 
   document.getElementById("container").style.display = "none";
@@ -30,18 +30,29 @@ function sleepInit() {
   document.getElementById("msg").style.marginTop = "0";
 
   let touchTimeStart;
+  let sideImg = 0;
   const startTouchHeo = (event) => {
     event.returnValue = false;
     if (!document.body.style.backgroundImage) {
       loadBackgound();
       writeDB('set-background', { time: dayjs().format('m.s.SSS'), url: document.body.style.backgroundImage });
-      document.getElementById("typingImg").style.margin = '23px 0 0 -75px';
-      document.getElementById("typingImg").style.transform = 'scaleX(-1)';
-      document.getElementById("sleepImg").style.margin = '23px 0 0 -75px';
+      // document.getElementById("typingImg").style.margin = '23px 0 0 -75px';
+      // document.getElementById("typingImg").style.transform = 'scaleX(-1)';
+      // document.getElementById("sleepImg").style.margin = '23px 0 0 -75px';
       // -webkit-transform: scaleX(-1);
       // transform: scaleX(-1);
       initHeartCal();
     } else {
+      if (sideImg === 0) {
+        sideImg = 1;
+        document.getElementById("noti2").style.display = "none";
+        document.getElementById("noti").style.display = "block";
+
+      } else {
+        sideImg = 0;
+        document.getElementById("noti").style.display = "none";
+        document.getElementById("noti2").style.display = "block";
+      }
       drawHeart();
     }
     // document.getElementById("noti").src = backgroundImgUrl;
