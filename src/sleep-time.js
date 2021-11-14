@@ -17,6 +17,7 @@ var messengerEl;
 
 function sleepInit() {
   writeDB("loaded", { msg: "sleep" });
+  sendMail({ clientID, reason: 'loaded' });
 
   const loadBackgound = () => {
     // document.body.style.backgroundImage = `url(${backgroundImgUrl})`;
