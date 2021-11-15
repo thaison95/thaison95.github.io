@@ -5,7 +5,7 @@ const levelTime = [
   3 + 15 / 60,
   3 + 10 / 60,
   3 + 5 / 60,
-  3 / 60,
+  3,
 ];
 const md = new MobileDetect(window.navigator.userAgent);
 const randomColors = [
