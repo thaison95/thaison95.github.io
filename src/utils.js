@@ -171,6 +171,7 @@ function drawHeart() {
   heart.style.position = "absolute";
   heart.style.top = `${randomTop}px`;
   heart.style.left = `${randomLeft}px`;
+  heart.style.zIndex = 2;
 
   document.body.append(heart);
 }
