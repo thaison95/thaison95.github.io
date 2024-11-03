@@ -100,14 +100,26 @@
   <body>
     <img
       id="noti"
-      src=""
+      src="/images/meme_1.jpg"
       style="
-        top: 10%;
-        position: absolute;
-        left: calc(50% - 100px);
+        top: 0;
+        left: 0;
         display: none;
-        max-height: 42vh;
-        max-width: 200px;
+        position: absolute;
+        width: 100vw;
+        z-index: 1;
+      "
+      class="w3-animate-opacity"
+    />
+    <img
+      id="noti2"
+      src="/images/meme_2.jpeg"
+      style="
+        left: 0;
+        display: none;
+        position: absolute;
+        width: 100vw;
+        bottom: -140px;
       "
       class="w3-animate-opacity"
     />
@@ -117,13 +129,14 @@
         id="sleepImg"
         src="/images/fd834d0538f20b561177a3ca6fc1700d.gif"
         width="120px"
-        style="display: none"
+        style="display: none; position: absolute; transform: translateX(-50%)"
       />
       <img
         id="typingImg"
         onclick="onTypingClick()"
         src="/images/heo_typing.gif"
         width="120px"
+        style="position: absolute; transform: translateX(-50%)"
       />
     </div>
     <div id="container" style="display: none" >
@@ -139,7 +152,9 @@
             <!-- <option value="1">Cấp 14-15 (3h25m)</option>
             <option value="2" selected="selected">Cấp 16-17 (3h20m)</option>
             <option value="3">Cấp 18 (3h15m)</option> -->
-            <option value="4">Cấp 20 (3h10m)</option>
+            <!-- <option value="4">Cấp 20 (3h10m)</option> -->
+            <!-- <option value="5">Cấp 22 (3h5m)</option> -->
+            <option value="6">Cấp 24+ (3h0m)</option>
           </select>
         </div>
       </div>
@@ -187,13 +202,15 @@
 
     var db = firebase.firestore();
     var storage = firebase.storage();
-    var imagesRef = storage.ref().child('chuot96/sep2021.jpg');
+    // var imagesRef = storage.ref().child('chuot96/sep2021.jpg');
 
-    var backgroundImgUrl = '';
-    imagesRef.getDownloadURL().then(url => {
-      document.getElementById("noti").src = url;
-      backgroundImgUrl = url;
-    });
+    // var backgroundImgUrl = '';
+    // const startGetUrlTime = Date.now();
+    // imagesRef.getDownloadURL().then(url => {
+    //   document.getElementById("noti").src = url;
+    //   backgroundImgUrl = url;
+    //   writeDB('load-background-url', { time: Date.now() - startGetUrlTime });
+    // });
     
   </script>
 </html>

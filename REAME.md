@@ -1,1 +1,1 @@
-This branch have outdated. Pls update code on gh-pages branch.
+This branch just pet project.
